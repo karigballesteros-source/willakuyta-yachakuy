@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Willakuyta Yachakuy - Historia del Perú</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,7 +30,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <!-- CONTENEDOR DE AUTENTICACIÓN (LOGIN / REGISTRO) -->
+    <!-- LOGIN / REGISTRO -->
     <div id="auth-screen" class="fixed inset-0 bg-slate-900/80 z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 border-t-8 border-andinoNaranja">
             <div class="text-center mb-6">
@@ -52,98 +51,63 @@
         </div>
     </div>
 
-    <!-- APLICACIÓN PRINCIPAL -->
+    <!-- APP PRINCIPAL -->
     <div id="app-screen" class="hidden flex-col min-h-screen">
-        <!-- Barra de Navegación -->
         <header class="bg-andinoVerde text-white shadow-md sticky top-0 z-40">
             <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <span class="text-2xl font-bold tracking-wider">🦙 Willakuyta Yachakuy</span>
-                </div>
+                <span class="text-2xl font-bold tracking-wider">🦙 Willakuyta Yachakuy</span>
                 <div class="flex items-center space-x-4">
-                    <div class="bg-andinoNaranja px-3 py-1 rounded-full text-sm font-bold shadow">
-                        ⭐ <span id="user-xp">0</span> XP
-                    </div>
-                    <div class="bg-andinoRosa px-3 py-1 rounded-full text-sm font-bold shadow">
-                        🎖️ <span id="user-rank">Yachaq</span>
-                    </div>
+                    <div class="bg-andinoNaranja px-3 py-1 rounded-full text-sm font-bold shadow">⭐ <span id="user-xp">0</span> XP</div>
+                    <div class="bg-andinoRosa px-3 py-1 rounded-full text-sm font-bold shadow">🎖️ <span id="user-rank">Yachaq</span></div>
                     <button onclick="logout()" class="text-xs bg-white/20 hover:bg-white/30 px-2 py-1 rounded">Salir</button>
                 </div>
             </div>
         </header>
 
-        <!-- Navegación por Secciones -->
         <nav class="bg-white border-b shadow-sm">
             <div class="max-w-6xl mx-auto flex overflow-x-auto space-x-2 p-2">
                 <button onclick="switchTab('quizzes')" class="tab-btn px-4 py-2 rounded-xl font-semibold bg-andinoTurquesa text-white transition">Quizzes Diarios</button>
-                <button onclick="switchTab('flashcards')" class="tab-btn px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition">Tarjetas (Flashcards)</button>
+                <button onclick="switchTab('flashcards')" class="tab-btn px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition">Tarjetas</button>
                 <button onclick="switchTab('timeline')" class="tab-btn px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition">Línea de Tiempo</button>
-                <button onclick="switchTab('ranking')" class="tab-btn px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition">Rankings</button>
                 <button onclick="switchTab('amaru')" class="tab-btn px-4 py-2 rounded-xl font-semibold text-slate-600 hover:bg-slate-100 transition">🤖 Amaru AI</button>
             </div>
         </nav>
 
-        <!-- Contenido Dinámico -->
         <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
-            
-            <!-- SECCIÓN: QUIZZES -->
+            <!-- QUIZZES -->
             <section id="tab-quizzes" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-andinoTurquesa to-cyan-600 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold">Quiz Diario del Perú</h2>
-                        <p class="text-sm opacity-90 mt-1">¡Nuevas preguntas cada 24 horas para poner a prueba tu conocimiento ancestral!</p>
-                    </div>
-                    <div class="mt-4 md:mt-0 bg-white/20 px-4 py-2 rounded-xl text-center">
-                        <span class="block text-xs uppercase tracking-wider">Estado</span>
-                        <span class="font-bold text-lg">Disponible hoy</span>
-                    </div>
+                <div class="bg-gradient-to-r from-andinoTurquesa to-cyan-600 rounded-2xl p-6 text-white shadow-lg">
+                    <h2 class="text-2xl font-bold">Quiz Diario del Perú</h2>
+                    <p class="text-sm opacity-90 mt-1">¡Responde correctamente y gana XP!</p>
                 </div>
-
-                <div id="quiz-container" class="bg-white rounded-2xl shadow-md p-6 max-w-2xl mx-auto border">
-                </div>
+                <div id="quiz-container" class="bg-white rounded-2xl shadow-md p-6 max-w-2xl mx-auto border"></div>
             </section>
 
-            <!-- SECCIÓN: FLASHCARDS -->
+            <!-- FLASHCARDS -->
             <section id="tab-flashcards" class="tab-content hidden space-y-6">
-                <h2 class="text-2xl font-bold text-slate-800">Tarjetas Interactivas de Estudio</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="flashcards-container">
-                </div>
+                <h2 class="text-2xl font-bold text-slate-800">Tarjetas Interactivas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="flashcards-container"></div>
             </section>
 
-            <!-- SECCIÓN: LÍNEA DE TIEMPO -->
+            <!-- TIMELINE -->
             <section id="tab-timeline" class="tab-content hidden space-y-6">
-                <h2 class="text-2xl font-bold text-slate-800">Línea de Tiempo Cronológica</h2>
-                <div class="border-l-4 border-andinoNaranja pl-4 space-y-8" id="timeline-container">
-                </div>
+                <h2 class="text-2xl font-bold text-slate-800">Línea de Tiempo Histórica</h2>
+                <div class="border-l-4 border-andinoNaranja pl-4 space-y-8" id="timeline-container"></div>
             </section>
 
-            <!-- SECCIÓN: RANKING -->
-            <section id="tab-ranking" class="tab-content hidden space-y-6 max-w-xl mx-auto">
-                <h2 class="text-2xl font-bold text-slate-800 text-center">Tabla de Líderes</h2>
-                <div class="bg-white rounded-2xl shadow-md border overflow-hidden" id="ranking-list">
-                </div>
-            </section>
-
-            <!-- SECCIÓN: AMARU AI -->
+            <!-- AMARU AI -->
             <section id="tab-amaru" class="tab-content hidden space-y-6 max-w-2xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-md border overflow-hidden flex flex-col h-[500px]">
+                <div class="bg-white rounded-2xl shadow-md border overflow-hidden flex flex-col h-[450px]">
                     <div class="bg-andinoVerde text-white p-4 flex items-center space-x-3">
                         <div class="w-10 h-10 rounded-full bg-andinoNaranja flex items-center justify-center font-bold text-xl">🦙</div>
-                        <div>
-                            <h3 class="font-bold">Amaru (Asistente IA)</h3>
-                            <p class="text-xs text-andinoTurquesa">Guía de historia y quechua</p>
-                        </div>
+                        <div><h3 class="font-bold">Amaru (Asistente IA)</h3><p class="text-xs text-andinoTurquesa">Tu guía andino</p></div>
                     </div>
                     <div id="amaru-chat" class="flex-grow p-4 overflow-y-auto space-y-4 bg-slate-50">
-                        <div class="flex items-start space-x-2">
-                            <div class="bg-andinoNaranja text-white p-3 rounded-2xl max-w-[80%] text-sm shadow">
-                                ¡Allillanchu! (¿Cómo estás?). Soy Amaru, tu compañero de aventuras. Pregúntame sobre los Incas, Chavín o pídeme palabras en quechua. ¿Qué deseas aprender hoy?
-                            </div>
-                        </div>
+                        <div class="bg-andinoNaranja text-white p-3 rounded-2xl max-w-[80%] text-sm shadow">¡Allillanchu! Pregúntame sobre los Incas, Caral o palabras en quechua.</div>
                     </div>
                     <div class="p-3 bg-white border-t flex space-x-2">
-                        <input type="text" id="amaru-input" placeholder="Pregúntale algo a Amaru..." class="flex-grow px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-andinoVerde">
-                        <button onclick="sendAmaruMessage()" class="bg-andinoVerde text-white px-5 py-2 rounded-xl font-bold hover:bg-emerald-700 transition">Enviar</button>
+                        <input type="text" id="amaru-input" placeholder="Escribe aquí..." class="flex-grow px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-andinoVerde">
+                        <button onclick="sendAmaruMessage()" class="bg-andinoVerde text-white px-5 py-2 rounded-xl font-bold">Enviar</button>
                     </div>
                 </div>
             </section>
@@ -152,25 +116,27 @@
 
     <script>
         let currentUser = JSON.parse(localStorage.getItem('willakuy_user')) || null;
+
         const dailyQuizzes = [
             { question: "¿Cuál es considerada la civilización más antigua de América?", options: ["Inca", "Caral", "Moche", "Nazca"], correct: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Caral_piramide_mayor.jpg/640px-Caral_piramide_mayor.jpg" },
-            { question: "¿Qué cultura preinca es famosa por sus complejas líneas trazadas en el desierto?", options: ["Chavín", "Paracas", "Nazca", "Chimú"], correct: 2, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nazca_lines_colibri.jpg/640px-Nazca_lines_colibri.jpg" }
+            { question: "¿Qué cultura preinca es famosa por sus líneas en el desierto?", options: ["Chavín", "Paracas", "Nazca", "Chimú"], correct: 2, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nazca_lines_colibri.jpg/640px-Nazca_lines_colibri.jpg" }
         ];
+
         const flashcardsData = [
-            { title: "Cultura Caral", desc: "La civilización más antigua de América.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Caral_piramide_mayor.jpg/640px-Caral_piramide_mayor.jpg" },
-            { title: "Imperio Inca", desc: "El imperio más grande de América.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu,_Peru.jpg/640px-Machu_Picchu,_Peru.jpg" }
+            { title: "Cultura Caral", desc: "La civilización más antigua de América (aprox. 3000 a.C.).", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Caral_piramide_mayor.jpg/640px-Caral_piramide_mayor.jpg" },
+            { title: "Imperio Inca", desc: "El gran imperio del Tahuantinsuyo y su red vial Qhapaq Ñan.", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu,_Peru.jpg/640px-Machu_Picchu,_Peru.jpg" }
         ];
+
         const timelineData = [
-            { year: "3000 a.C.", title: "Surgimiento de Caral", desc: "Inicio de la civilización." },
-            { year: "1821 d.C.", title: "Independencia del Perú", desc: "Proclamación nacional." }
+            { year: "3000 a.C.", title: "Surgimiento de Caral", desc: "Inicio de la civilización en Supe." },
+            { year: "1821 d.C.", title: "Independencia del Perú", desc: "Proclamada por Don José de San Martín." }
         ];
-        
-        // Funciones auxiliares
+
         document.getElementById('register-form').addEventListener('submit', (e) => {
             e.preventDefault();
             currentUser = { name: document.getElementById('reg-name').value, xp: 0, rank: "Yachaq" };
             localStorage.setItem('willakuy_user', JSON.stringify(currentUser));
-            location.reload();
+            checkAuth();
         });
 
         function checkAuth() {
@@ -178,25 +144,63 @@
                 document.getElementById('auth-screen').classList.add('hidden');
                 document.getElementById('app-screen').classList.remove('hidden');
                 document.getElementById('app-screen').classList.add('flex');
+                document.getElementById('user-xp').innerText = currentUser.xp;
+                loadAppContent();
             }
         }
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('bg-andinoTurquesa', 'text-white'));
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            event.currentTarget.classList.add('bg-andinoTurquesa', 'text-white');
         }
 
-        function logout() { localStorage.removeItem('willakuy_user'); location.reload(); }
+        function loadAppContent() {
+            // Quiz
+            const quiz = dailyQuizzes[0];
+            document.getElementById('quiz-container').innerHTML = `
+                <img src="${quiz.image}" class="w-full h-40 object-cover rounded-xl mb-4 shadow">
+                <h3 class="font-bold text-lg mb-4">${quiz.question}</h3>
+                <div class="space-y-2">
+                    ${quiz.options.map((opt, idx) => `<button onclick="alert(${idx === quiz.correct} ? '¡Correcto! +50 XP' : 'Incorrecto')" class="w-full text-left p-3 border rounded-xl hover:bg-slate-100">${opt}</button>`).join('')}
+                </div>`;
 
-        window.onload = () => {
-            checkAuth();
-            if(currentUser) {
-                // Inicializar contenido...
-                const container = document.getElementById('quiz-container');
-                const quiz = dailyQuizzes[0];
-                container.innerHTML = `<img src="${quiz.image}" class="w-full h-48 object-cover rounded-xl mb-4"><h3 class="font-bold">${quiz.question}</h3>`;
-            }
-        };
+            // Flashcards
+            document.getElementById('flashcards-container').innerHTML = flashcardsData.map(c => `
+                <div class="bg-white p-4 rounded-2xl border shadow-sm">
+                    <img src="${c.img}" class="w-full h-32 object-cover rounded-xl mb-2">
+                    <h3 class="font-bold text-andinoVerid text-lg">${c.title}</h3>
+                    <p class="text-sm text-slate-600 mt-1">${c.desc}</p>
+                </div>`).join('');
+
+            // Timeline
+            document.getElementById('timeline-container').innerHTML = timelineData.map(t => `
+                <div>
+                    <span class="text-xs font-bold text-andinoRosa bg-andinoRosa/10 px-2 py-1 rounded">${t.year}</span>
+                    <h3 class="font-bold text-slate-800 mt-1">${t.title}</h3>
+                    <p class="text-sm text-slate-600">${t.desc}</p>
+                </div>`).join('');
+        }
+
+        function sendAmaruMessage() {
+            const input = document.getElementById('amaru-input');
+            const chat = document.getElementById('amaru-chat');
+            if(!input.value.trim()) return;
+            chat.innerHTML += `<div class="flex justify-end"><div class="bg-andinoVerde text-white p-3 rounded-2xl max-w-[80%] text-sm">${input.value}</div></div>`;
+            input.value = '';
+            setTimeout(() => {
+                chat.innerHTML += `<div class="bg-andinoNaranja text-white p-3 rounded-2xl max-w-[80%] text-sm">¡Sulpayki por tu pregunta! Sigue estudiando la historia del Perú con energía. 🦙</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 600);
+        }
+
+        function logout() {
+            localStorage.removeItem('willakuy_user');
+            location.reload();
+        }
+
+        window.onload = checkAuth;
     </script>
 </body>
 </html>
