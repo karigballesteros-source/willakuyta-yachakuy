@@ -3,50 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Willakuyta Yachakuy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0f172a; color: white; font-family: sans-serif; text-align: center; }
+        .tab { display: none; padding: 20px; }
+        .active { display: block; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
 </head>
-<body class="bg-slate-950 text-white p-4 md:p-10">
+<body>
+    <h1>Willakuyta Yachakuy</h1>
+    <nav>
+        <button onclick="cambiar('inicio')">Inicio</button>
+        <button onclick="cambiar('quiz')">Quiz</button>
+    </nav>
 
-    <div class="max-w-4xl mx-auto">
-        <!-- Navegación -->
-        <div class="flex gap-2 mb-8 bg-slate-900 p-2 rounded-xl">
-            <button onclick="show('home')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">Inicio</button>
-            <button onclick="show('quiz')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">Quiz</button>
-            <button onclick="show('culturas')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">13+ Culturas</button>
-        </div>
+    <div id="inicio" class="tab active">
+        <h2>Bienvenido</h2>
+        <p>Esta es la página principal.</p>
+    </div>
 
-        <!-- Secciones -->
-        <div id="home" class="seccion">
-            <h1 class="text-5xl font-bold text-amber-500 mb-4">Willakuyta Yachakuy</h1>
-            <p class="text-xl text-slate-400">Bienvenido al portal interactivo de la historia peruana.</p>
-        </div>
-
-        <div id="quiz" class="seccion hidden">
-            <h2 class="text-3xl font-bold mb-6">Quiz Diario</h2>
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700">
-                <p class="text-xl mb-4">¿Qué cultura creó los geoglifos de Nazca?</p>
-                <div class="grid gap-3">
-                    <button onclick="alert('¡Correcto!')" class="p-3 bg-slate-800 hover:bg-emerald-700 rounded-xl">Nazca</button>
-                    <button onclick="alert('Intenta de nuevo')" class="p-3 bg-slate-800 hover:bg-red-700 rounded-xl">Inca</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="culturas" class="seccion hidden">
-            <h2 class="text-3xl font-bold mb-6">Las 13+ Culturas</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-slate-900 p-4 rounded-xl">Caral</div>
-                <div class="bg-slate-900 p-4 rounded-xl">Chavín</div>
-                <div class="bg-slate-900 p-4 rounded-xl">Nazca</div>
-                <div class="bg-slate-900 p-4 rounded-xl">Moche</div>
-            </div>
-        </div>
+    <div id="quiz" class="tab">
+        <h2>Quiz Diario</h2>
+        <button onclick="alert('¡Correcto!')">¿Caral es la más antigua? (Sí)</button>
     </div>
 
     <script>
-        function show(id) {
-            document.querySelectorAll('.seccion').forEach(s => s.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
+        function cambiar(id) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
     </script>
 </body>
