@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willakuyta Yachakuy - Historia</title>
+    <title>Willakuyta Yachakuy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: system-ui, sans-serif; }
-    </style>
 </head>
-<body class="text-slate-100 min-h-screen">
-    <!-- Navbar -->
-    <nav class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50 backdrop-blur">
-        <h1 class="text-2xl font-bold text-amber-500">🦙 Willakuyta Yachakuy</h1>
-        <div class="space-x-4 text-sm font-medium">
-            <a href="#" class="hover:text-amber-500">Inicio</a>
-            <a href="#" class="hover:text-amber-500">Culturas</a>
-            <a href="#" class="hover:text-amber-500">Ranking</a>
-        </div>
-    </nav>
+<body class="bg-slate-950 text-white p-4 md:p-10">
 
-    <!-- Contenido principal -->
-    <main class="max-w-5xl mx-auto mt-10 p-6">
-        <div class="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-2xl">
-            <h2 class="text-4xl font-extrabold mb-4">Bienvenido a la Historia del Perú</h2>
-            <p class="text-slate-400 mb-8">Explora nuestras 13 culturas, completa tus quizzes y sube de rango en nuestro ranking de historiadores.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
-                    <h3 class="text-xl font-bold mb-2">Quizzes Diarios</h3>
-                    <p class="text-sm text-slate-400">Gana experiencia y demuestra cuánto sabes.</p>
-                </div>
-                <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
-                    <h3 class="text-xl font-bold mb-2">13+ Culturas</h3>
-                    <p class="text-sm text-slate-400">Desde Caral hasta la República.</p>
-                </div>
-                <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700">
-                    <h3 class="text-xl font-bold mb-2">Amaru AI</h3>
-                    <p class="text-sm text-slate-400">Tu asistente inteligente en quechua y español.</p>
+    <div class="max-w-4xl mx-auto">
+        <!-- Navegación -->
+        <div class="flex gap-2 mb-8 bg-slate-900 p-2 rounded-xl">
+            <button onclick="show('home')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">Inicio</button>
+            <button onclick="show('quiz')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">Quiz</button>
+            <button onclick="show('culturas')" class="px-4 py-2 bg-slate-800 rounded-lg hover:bg-slate-700">13+ Culturas</button>
+        </div>
+
+        <!-- Secciones -->
+        <div id="home" class="seccion">
+            <h1 class="text-5xl font-bold text-amber-500 mb-4">Willakuyta Yachakuy</h1>
+            <p class="text-xl text-slate-400">Bienvenido al portal interactivo de la historia peruana.</p>
+        </div>
+
+        <div id="quiz" class="seccion hidden">
+            <h2 class="text-3xl font-bold mb-6">Quiz Diario</h2>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700">
+                <p class="text-xl mb-4">¿Qué cultura creó los geoglifos de Nazca?</p>
+                <div class="grid gap-3">
+                    <button onclick="alert('¡Correcto!')" class="p-3 bg-slate-800 hover:bg-emerald-700 rounded-xl">Nazca</button>
+                    <button onclick="alert('Intenta de nuevo')" class="p-3 bg-slate-800 hover:bg-red-700 rounded-xl">Inca</button>
                 </div>
             </div>
         </div>
-    </main>
 
-    <footer class="text-center mt-20 p-6 text-slate-500 text-sm">
-        Willakuyta Yachakuy © 2026 - Historia del Perú interactiva.
-    </footer>
+        <div id="culturas" class="seccion hidden">
+            <h2 class="text-3xl font-bold mb-6">Las 13+ Culturas</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-900 p-4 rounded-xl">Caral</div>
+                <div class="bg-slate-900 p-4 rounded-xl">Chavín</div>
+                <div class="bg-slate-900 p-4 rounded-xl">Nazca</div>
+                <div class="bg-slate-900 p-4 rounded-xl">Moche</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function show(id) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
